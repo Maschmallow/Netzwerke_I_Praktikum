@@ -1,4 +1,4 @@
-package edu.hm.cs.network1.task1;import java.io.FileWriter;
+package edu.hm.cs.network1.sheet1.task2;import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.String;import java.lang.System;import java.util.Scanner;
