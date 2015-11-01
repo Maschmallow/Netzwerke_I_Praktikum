@@ -4,11 +4,19 @@ import java.io.PrintWriter;
 import java.lang.String;import java.lang.System;import java.util.Scanner;
 
 /**
- * Created by Benjamin Königsberg.
+ * Initiert einen TestServer
+ *
+ * @author B. Königsberg und P. Masch.
  */
 public class TestServer2 {
 
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     * @throws IOException the io exception
+     */
     public static void main(String[] args) throws IOException {
 
         try (Scanner sc = new Scanner(System.in);

@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Benjamin Königsberg.
+ * Initiert einen KatzenProxy
+ *
+ * @author B. Königsberg und P. Masch.
  */
 public class CatProxy {
 
@@ -16,6 +18,12 @@ public class CatProxy {
     private static final String CAT_URL = "<img src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Turkish_Van_Cat.jpg/819px-Turkish_Van_Cat.jpg\"";
 
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     * @throws Exception the exception
+     */
     public static void main(String[] args) throws Exception {
         String host = args.length > 0 ? args[0] : "mmix.cs.hm.edu";
 
@@ -58,7 +66,14 @@ public class CatProxy {
         }
     }
 
-
+    /**
+     * Sendet eine Anfrage und bekommt eine Antwort
+     *
+     * @param request
+     * @param host
+     * @return
+     * @throws IOException
+     */
     private static List<String> sendRequestAndGetResponse(List<String> request, String host) throws IOException {
         List<String> response = new ArrayList<>();
 
@@ -89,6 +104,12 @@ public class CatProxy {
         return response;
     }
 
+    /**
+     * Modifiziert Header
+     *
+     * @param header
+     * @return
+     */
     private static List<String> modifyHeader(List<String> header) {
         List<String> modifiedHeader = new ArrayList<>();
 
