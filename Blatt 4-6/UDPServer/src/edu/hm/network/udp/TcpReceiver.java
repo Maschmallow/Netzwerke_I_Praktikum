@@ -28,10 +28,15 @@ public class TcpReceiver {
 	public void setTimeout(int timeout) throws SocketException {
 		clientSocket.setSoTimeout(timeout);
 	}
-
+	public void accept() {
+		try {
+			clientSocket = serverSocket.accept();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	public MyPacket receive() throws IOException,SocketTimeoutException {
 		byte[] receiveData = new byte[1400];
-		clientSocket = serverSocket.accept();
 
 		if (isVerbose) {
 			System.out.println("Verbindung wurde von: " + 

@@ -32,8 +32,10 @@ public class Server {
 	public Server(boolean isTCP) {
 		this.isTCP = isTCP;
 
-		if(isTCP)
+		if(isTCP) {
 			tcpReceiver = new TcpReceiver(PORT_NUMBER, VERBOSE);
+			tcpReceiver.accept();
+		}
 		else
 			udpReceiver = new UdpReceiver(PORT_NUMBER, VERBOSE);
 	}
