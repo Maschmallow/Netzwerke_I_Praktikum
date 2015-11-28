@@ -129,7 +129,11 @@ public class Server {
 				e.printStackTrace();
 			}
 		}
-
+		
+		if (isTCP)
+			tcpReceiver.close();
+		else
+			udpReceiver.close();
 	}
 
 	public static void main(String[] args) {

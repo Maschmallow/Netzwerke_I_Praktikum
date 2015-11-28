@@ -1,17 +1,20 @@
 package edu.hm.network.udp;
 
-import java.io.DataInputStream;
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
+import java.nio.ByteBuffer;
 
 public class TcpReceiver {
 	private ServerSocket serverSocket;
 	private Socket clientSocket;
 	private boolean isVerbose;
+	private BufferedReader charIn;
 
 	public TcpReceiver(int port, boolean verbose) {
 		try {
@@ -28,6 +31,16 @@ public class TcpReceiver {
 	public void setTimeout(int timeout) throws SocketException {
 		clientSocket.setSoTimeout(timeout);
 	}
+	
+	public void close() {
+		try {
+			din.close();
+			clientSocket.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	public void accept() {
 		try {
 			clientSocket = serverSocket.accept();
@@ -43,13 +56,21 @@ public class TcpReceiver {
 					clientSocket.getInetAddress().
 					getHostName() + "aufgebaut.");
 		}
-
-		InputStream in = clientSocket.getInputStream();
-		DataInputStream din = new DataInputStream(in);
-		din.readFully(receiveData);
-
+		
+		ByteBuffer bf = ByteBuffer.allocate(1400);
+		BufferedInputStream inFromClient = new BufferedInputStream(clientSocket.getInputStream());
+		int num = 0;
+		while(true) {
+			int b = inFromClient.read();
+			if (b== -1) {
+				break;
+			}
+			bf.put((byte)b);
+			num++;
+		}
+		
 		MyPacket myPacket = MyPacket.deserializePacket(receiveData);
-		myPacket.setLength(receiveData.length);
+		myPacket.setLength(num);
 
 		return myPacket;
 
