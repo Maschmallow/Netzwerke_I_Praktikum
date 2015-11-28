@@ -91,6 +91,7 @@ public class Server {
 		if(receivedPackets == 0) {
 			startTime = System.nanoTime();
 			udpReceiver.setTimoutTime(TIMEOUT);
+			System.out.println("Erstes Paket empfangen...");
 		}
 
 		// Set end time after each received packet

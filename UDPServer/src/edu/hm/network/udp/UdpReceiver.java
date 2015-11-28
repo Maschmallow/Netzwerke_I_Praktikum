@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 
@@ -24,6 +25,7 @@ public class UdpReceiver {
 			serverSocket=new DatagramSocket(port);
 			// all packets will be of size 1400 bytes
 			serverSocket.setReceiveBufferSize(65536);
+			//serverSocket.bind(new InetSocketAddress(InetAddress.getByName("192.168.178.28"), arg1));
 			isVerbose = verbose;
 			System.out.println("**** UDP server started ****");
 			System.out.println("The server is listening on port: " + port);
