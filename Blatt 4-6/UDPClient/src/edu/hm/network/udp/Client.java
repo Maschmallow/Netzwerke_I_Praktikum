@@ -19,7 +19,7 @@ public class Client {
 	// the size of the packet (goodput)
 	public static final int PACKET_SIZE = 1400;
 	
-	public static final boolean ISTCP = false;
+	public static final boolean ISTCP = true;
 	public static final boolean VERBOSE = false;
 	
 	

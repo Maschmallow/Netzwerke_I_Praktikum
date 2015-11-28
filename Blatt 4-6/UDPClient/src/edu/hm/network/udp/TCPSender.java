@@ -2,7 +2,6 @@ package edu.hm.network.udp;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 
@@ -16,9 +15,10 @@ public class TCPSender implements Sender {
 	@Override
 	public void send(byte[] sendData) {
 		try {
-			OutputStream out = clientSocket.getOutputStream();
-			DataOutputStream charOut = new DataOutputStream(out);
+			DataOutputStream charOut = 
+					new DataOutputStream(clientSocket.getOutputStream());
 			charOut.write(sendData);
+			charOut.flush();
 		} catch(IOException e1) {
 			e1.printStackTrace();
 		}
