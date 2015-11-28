@@ -19,7 +19,7 @@ public class Server {
 	private long receivedPackets = 0;
 
 	/* use TCP or UDP */
-	private boolean isTCP = false;
+	private boolean isTCP = true;
 
 	/* time in nanoseconds the server received first packet */
 	private long startTime = 0;
@@ -90,7 +90,10 @@ public class Server {
 		 */
 		if(receivedPackets == 0) {
 			startTime = System.nanoTime();
-			udpReceiver.setTimoutTime(TIMEOUT);
+			if(isTCP)
+			    tcpReceiver.setTimeout(TIMEOUT);
+			else
+			    udpReceiver.setTimoutTime(TIMEOUT);
 			System.out.println("Erstes Paket empfangen...");
 		}
 
@@ -128,7 +131,7 @@ public class Server {
 	}
 
 	public static void main(String[] args) {
-		Server server = new Server(false);
+		Server server = new Server(true);
 
 		server.start();
 	}
