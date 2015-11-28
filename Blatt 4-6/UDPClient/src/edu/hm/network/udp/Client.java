@@ -7,9 +7,9 @@ import java.util.concurrent.TimeUnit;
 
 public class Client {
 	// every PACKETS a DELAY will be triggered.
-	public static final int PACKETS = 2;
+	public static final int PACKETS = 10;
 	// delay in milliseconds between every PACKETS.
-	public static final int DELAY = 100;
+	public static final int DELAY = 200;
 
 	// duration of time in seconds in which packets are send.
 	public static long MAX_TIME = 30;
@@ -20,7 +20,7 @@ public class Client {
 	public static void main(String[] args) throws Exception {
 		long startTime = 0;
 		int packetsSend = 0;
-		InetAddress IPAddress = InetAddress.getByName("127.0.0.1");
+		InetAddress IPAddress = InetAddress.getByName("192.168.178.56");
 		DatagramSocket clientSocket = new DatagramSocket();
 
 		while(true) {
