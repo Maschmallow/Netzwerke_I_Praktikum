@@ -43,12 +43,12 @@ public class Server {
 	 * @param bytes
 	 * @return kilobytes
 	 */
-	private long convertToKBits(long bytes) {
-		return (bytes * 8) / 1024;
+	private double convertToKBits(long bytes) {
+		return ((double)bytes * 8.0) / 1024.0;
 	}
 
-	private long calcGoodput() {
-		return convertToKBits(totalPacketSize) / TimeUnit.NANOSECONDS.toSeconds(endTime-startTime);
+	private double calcGoodput() {
+		return convertToKBits(totalPacketSize) / (double)TimeUnit.NANOSECONDS.toSeconds(endTime-startTime);
 	}
 
 	boolean isPacketLost(MyPacket lastPacket) {

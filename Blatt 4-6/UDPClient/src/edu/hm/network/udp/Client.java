@@ -53,8 +53,10 @@ public class Client {
 				System.out.println("Send packet: " + myPacket.getInstanceCounter());
 			
 			/* Start timer if first packet was send */
-			if (packetsSend == 0)
+			if (packetsSend == 0) {
+				System.out.println("First packet was send...");
 				startTime = System.nanoTime();
+			}
 			/* Check if MAX_TIME was passed */
 			else if(TimeUnit.NANOSECONDS.toSeconds(System.nanoTime()-startTime)>MAX_TIME)
 				break;
@@ -64,7 +66,7 @@ public class Client {
 		
 		System.out.println("Packets send: " + packetsSend + " in " + MAX_TIME + " seconds.");
 		/* Calculate effective transmission rate */
-		System.out.println("Effective Transmission rate: " + (packetsSend*PACKET_SIZE*8)/MAX_TIME + "kbit/s");
+		System.out.println("Effective Transmission rate: " + ((double)packetsSend*(double)PACKET_SIZE*8.0/1024.0)/MAX_TIME + "kbit/s");
 	}
 
 
