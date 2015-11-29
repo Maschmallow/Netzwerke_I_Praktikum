@@ -39,7 +39,7 @@ public class Server {
 	}
 
 	/**
-	 * Convert bytes to kilobytes
+	 * Convert bytes to kilobits
 	 * @param bytes
 	 * @return kilobytes
 	 */
@@ -118,6 +118,8 @@ public class Server {
 			try {
 				receivePackets();
 			} catch(SocketTimeoutException e) {
+				System.out.println("Das letzte Paket wurde nach " + 
+						TimeUnit.NANOSECONDS.toSeconds(endTime-startTime) + " sekunden empfangen");
 				System.out.println("Der Goodput beträgt: " + calcGoodput() + " kbit/s");
 				break;
 			} catch (IOException e) {
