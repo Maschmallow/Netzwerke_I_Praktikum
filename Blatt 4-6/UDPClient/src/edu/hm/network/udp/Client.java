@@ -13,7 +13,7 @@ public class Client {
 	public static final long MAX_TIME = 30;
 	
 	// Host with port number to which connection is established
-	public static final String HOST = "192.168.178.56";
+	public static final String HOST = "localhost"; // Laptop: 192.168.178.56
 	private static final int PORT_NUMBER = 9876;
 
 	// the size of the packet (goodput)
@@ -21,8 +21,6 @@ public class Client {
 	
 	public static final boolean ISTCP = true;
 	public static final boolean VERBOSE = false;
-	
-	
 	
 	private Sender sender;
 	
@@ -65,7 +63,7 @@ public class Client {
 		sender.close();
 		
 		System.out.println("Packets send: " + packetsSend + " in " + MAX_TIME + " seconds.");
-		/* Calculate transmission rate */
+		/* Calculate effective transmission rate */
 		System.out.println("Transmission rate: " + (packetsSend*PACKET_SIZE*8)/MAX_TIME + "kbit/s");
 	}
 

@@ -7,7 +7,7 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 
-public class UdpReceiver {
+public class UdpReceiver implements Receiver {
 	private DatagramSocket serverSocket;
 	private byte[] receiveData;
 	private boolean isVerbose = false;
@@ -22,16 +22,15 @@ public class UdpReceiver {
 		try {
 			// create a udp socket listing on the specified port
 			serverSocket=new DatagramSocket(port);
-			// all packets will be of size 1400 bytes
 			serverSocket.setReceiveBufferSize(65536);
-			//serverSocket.bind(new InetSocketAddress(InetAddress.getByName("192.168.178.28"), arg1));
+			
 			isVerbose = verbose;
 			System.out.println("**** UDP server started ****");
 			System.out.println("The server is listening on port: " + port);
 			System.out.println("The server is waiting for client connections.");
 		} catch(SocketException e) {
 			System.err.println("Error: SocketException in UdpReceiver()");
-				e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
 	/**
@@ -40,7 +39,7 @@ public class UdpReceiver {
 	 * returns.
 	 * @throws SocketException 
 	 */
-	public void setTimoutTime(int timeout) throws SocketException {
+	public void setTimeoutTime(int timeout) throws SocketException {
 		// time after which the blocking receive method
 		// will be aborted
 		serverSocket.setSoTimeout(timeout);

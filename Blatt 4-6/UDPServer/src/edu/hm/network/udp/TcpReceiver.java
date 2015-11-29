@@ -1,20 +1,17 @@
 package edu.hm.network.udp;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.EOFException;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
-import java.nio.ByteBuffer;
 
-public class TcpReceiver {
+public class TcpReceiver implements Receiver {
 	private ServerSocket serverSocket;
 	private Socket clientSocket;
 	private boolean isVerbose;
-	private BufferedReader charIn;
 
 	public TcpReceiver(int port, boolean verbose) {
 		try {
@@ -23,24 +20,27 @@ public class TcpReceiver {
 			System.out.println("The server is listening on port: " + port);
 			System.out.println("The server is waiting for client connections.");
 			isVerbose = verbose;
+			accept();
 		} catch(IOException e1) {
+			System.err.println("Error: SocketException in TcpReceiver()");
 			e1.printStackTrace();
 		}
 	}
 
-	public void setTimeout(int timeout) throws SocketException {
+	@Override
+	public void setTimeoutTime(int timeout) throws SocketException {
 		clientSocket.setSoTimeout(timeout);
 	}
 	
+	@Override
 	public void close() {
 		try {
-			din.close();
 			clientSocket.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (IOException e2) {
+			e2.printStackTrace();
 		}
 	}
+	
 	public void accept() {
 		try {
 			clientSocket = serverSocket.accept();
@@ -57,22 +57,20 @@ public class TcpReceiver {
 					getHostName() + "aufgebaut.");
 		}
 		
-		ByteBuffer bf = ByteBuffer.allocate(1400);
-		BufferedInputStream inFromClient = new BufferedInputStream(clientSocket.getInputStream());
-		int num = 0;
-		while(true) {
-			int b = inFromClient.read();
-			if (b== -1) {
-				break;
-			}
-			bf.put((byte)b);
-			num++;
+		DataInputStream inFromClient = new DataInputStream(clientSocket.getInputStream());
+		
+		try {
+		inFromClient.readFully(receiveData);
+		} catch(EOFException e)
+		{
+			throw new SocketTimeoutException();
 		}
 		
 		MyPacket myPacket = MyPacket.deserializePacket(receiveData);
-		myPacket.setLength(num);
-
+		
 		return myPacket;
 
 	}
+
+	
 }

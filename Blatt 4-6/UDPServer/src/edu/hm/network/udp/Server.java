@@ -9,9 +9,6 @@ public class Server {
 	private static final int TIMEOUT = 10000; // ms = 5s
 	private static final boolean VERBOSE = false;
 
-	private UdpReceiver udpReceiver;
-	private TcpReceiver tcpReceiver;
-
 	/* Contains the byte size of all received packets*/
 	private long totalPacketSize = 0;
 
@@ -28,16 +25,17 @@ public class Server {
 	private long endTime = 0;
 
 	private MyPacket prevUDPPacket = null;
+	
+	private Receiver receiver = null;
 
 	public Server(boolean isTCP) {
 		this.isTCP = isTCP;
 
 		if(isTCP) {
-			tcpReceiver = new TcpReceiver(PORT_NUMBER, VERBOSE);
-			tcpReceiver.accept();
+			receiver = new TcpReceiver(PORT_NUMBER, VERBOSE);
 		}
 		else
-			udpReceiver = new UdpReceiver(PORT_NUMBER, VERBOSE);
+			receiver = new UdpReceiver(PORT_NUMBER, VERBOSE);
 	}
 
 	/**
@@ -68,16 +66,14 @@ public class Server {
 	}
 
 	public void receivePackets() throws IOException,SocketTimeoutException {
-		MyPacket myPacket = null;
-
+		if (receiver == null)
+			return;
+			
 		/*
 		 * Receive UDP Packets
 		 * First call is blocking rest has timeout
 		 */
-		if(isTCP)
-			myPacket = tcpReceiver.receive();
-		else
-			myPacket = udpReceiver.receive();
+		MyPacket myPacket = receiver.receive();
 
 		if(myPacket == null) {
 			return;
@@ -92,16 +88,15 @@ public class Server {
 		 */
 		if(receivedPackets == 0) {
 			startTime = System.nanoTime();
-			if(isTCP)
-			    tcpReceiver.setTimeout(TIMEOUT);
-			else
-			    udpReceiver.setTimoutTime(TIMEOUT);
+			if (!isTCP)
+			    receiver.setTimeoutTime(TIMEOUT);
 			System.out.println("Erstes Paket empfangen...");
 		}
 
 		// Set end time after each received packet
 		// it could be the last
 		endTime = System.nanoTime();
+		
 		receivedPackets++;
 
 		/*
@@ -130,10 +125,7 @@ public class Server {
 			}
 		}
 		
-		if (isTCP)
-			tcpReceiver.close();
-		else
-			udpReceiver.close();
+		receiver.close();
 	}
 
 	public static void main(String[] args) {
