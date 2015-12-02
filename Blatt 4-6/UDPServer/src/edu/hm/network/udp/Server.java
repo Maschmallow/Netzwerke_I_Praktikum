@@ -48,11 +48,11 @@ public class Server {
 	}
 
 	private double calcGoodput() {
-		return convertToKBits(totalPacketSize) / (double)TimeUnit.NANOSECONDS.toSeconds(endTime-startTime);
+		return convertToKBits(totalPacketSize) / ((endTime-startTime)/1000000000.0);
 	}
 
 	boolean isPacketLost(MyPacket lastPacket) {
-		return (prevUDPPacket != null && lastPacket != null 
+		return (prevUDPPacket != null && lastPacket != null
 				&& prevUDPPacket.getInstanceCounter() != lastPacket.getInstanceCounter()-1);
 	}
 
