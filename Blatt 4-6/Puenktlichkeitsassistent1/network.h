@@ -37,16 +37,17 @@ private:
     SOCKADDR_IN m_sinRemote;
     addrinfo res;
 public:
+    WinStreamNetwork();
+
     int SysCreateSocket(int nLocalPort);
     int SysDestroySocket();
-    int Write(int nLen, LPVOID pData);
 
     // Establish TCP connection
     int Connect(LPSTR pszRemoteName, int nRemotePort);
 
-    // Establish TCP connection
-    // and init SSL
-    int Connect(LPSOCKADDR_IN psinRemote);
+    void Close();
+
+    int Write(void *data, int len);
 
     SOCKET getSocket() const { return m_s; }
 };
@@ -58,17 +59,27 @@ private:
 public:
     int Startup();
     int Connect(const SOCKET s);
-    int Write(char *buf, int len);
+    int Write(void *data, int len);
     int Read();
+    void Close();
 };
 
 class Network {
 private:
     WinNetworkInit m_sysNetworkInit;
     WinStreamNetwork m_sysStreamNetwork;
+    OpenSSL m_openSSL;
 public:
     bool Connect(const QString &hostName, const int port);
-    int Write(const QString &message);
+    int Write(const QString &message, bool useSSL);
+    void Close();
+    QString Read();
+};
+
+class MyNetwork : public Network {
+public:
+    void activateLamp();
+    void getDirection();
 };
 
 #endif // NETWORK_H

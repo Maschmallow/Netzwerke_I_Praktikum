@@ -3,12 +3,14 @@
 
 #include <QMessageBox>
 #include <QSortFilterProxyModel>
+#include "network.h"
 
 #include "newroutedialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    m_pNetwork(new MyNetwork)
 {
     ui->setupUi(this);
 
@@ -120,6 +122,7 @@ void MainWindow::AddNewWaypointDialog() {
     if (aDialog.exec()) {
         Address a = aDialog.getAddress();
         addEntry(a);
+        m_pNetwork->getDirection();
     }
 }
 
@@ -150,5 +153,6 @@ void MainWindow::addEntry(Address& address) {
 
 MainWindow::~MainWindow()
 {
+    delete m_pNetwork;
     delete ui;
 }

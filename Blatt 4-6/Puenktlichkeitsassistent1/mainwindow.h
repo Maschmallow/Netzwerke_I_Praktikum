@@ -14,7 +14,7 @@ class TableModel;
 class QItemSelection;
 QT_END_NAMESPACE
 
-class Network;
+class MyNetwork;
 
 class MainWindow : public QMainWindow
 {
@@ -35,7 +35,7 @@ signals:
     void SelectionChanged(const QItemSelection &selected);
 private:
     Ui::MainWindow *ui;
-    Network *m_pNetwork;
+    MyNetwork *m_pNetwork;
     TableModel *m_pTableModel;
 };
 
