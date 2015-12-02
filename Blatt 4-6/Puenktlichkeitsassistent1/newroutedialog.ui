@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>NewRouteDialog</class>
+ <widget class="QDialog" name="NewRouteDialog">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>448</width>
+    <height>149</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>692</width>
+    <height>439</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Neuer Wegpunkt</string>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0,0,0,0,0,0,0,0,0" columnstretch="0,0">
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <property name="spacing">
+      <number>6</number>
+     </property>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="streetNrEdit">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="inputMethodHints">
+        <set>Qt::ImhNone</set>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLineEdit" name="plzEdit">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>60</width>
+         <height>20</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Hausnummer:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="streetEdit">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="sizeIncrement">
+        <size>
+         <width>30</width>
+         <height>0</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLineEdit" name="cityEdit">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>200</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>20</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>PLZ</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="streetLbl">
+       <property name="text">
+        <string>Straße:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="plzCityLbl">
+       <property name="text">
+        <string>Stadt:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="0">
+      <widget class="QLabel" name="countryLbl">
+       <property name="text">
+        <string>Land:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="1">
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QComboBox" name="countryCmbBox">
+         <item>
+          <property name="text">
+           <string>Deutschland</string>
+          </property>
+          <property name="icon">
+           <iconset resource="myresource.qrc">
+            <normaloff>:/MyFiles/FlagIcons/resources/countries/de.png</normaloff>:/MyFiles/FlagIcons/resources/countries/de.png</iconset>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Italien</string>
+          </property>
+          <property name="icon">
+           <iconset resource="myresource.qrc">
+            <normaloff>:/MyFiles/FlagIcons/resources/countries/Italy.png</normaloff>:/MyFiles/FlagIcons/resources/countries/Italy.png</iconset>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Polen</string>
+          </property>
+          <property name="icon">
+           <iconset resource="myresource.qrc">
+            <normaloff>:/MyFiles/FlagIcons/resources/countries/Poland.png</normaloff>:/MyFiles/FlagIcons/resources/countries/Poland.png</iconset>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Frankreich</string>
+          </property>
+          <property name="icon">
+           <iconset resource="myresource.qrc">
+            <normaloff>:/MyFiles/FlagIcons/resources/countries/fr.png</normaloff>:/MyFiles/FlagIcons/resources/countries/fr.png</iconset>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Spanien</string>
+          </property>
+          <property name="icon">
+           <iconset resource="myresource.qrc">
+            <normaloff>:/MyFiles/FlagIcons/resources/countries/Spain.png</normaloff>:/MyFiles/FlagIcons/resources/countries/Spain.png</iconset>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Österreich</string>
+          </property>
+          <property name="icon">
+           <iconset resource="myresource.qrc">
+            <normaloff>:/MyFiles/FlagIcons/resources/countries/Austria.png</normaloff>:/MyFiles/FlagIcons/resources/countries/Austria.png</iconset>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item>
+        <widget class="QDialogButtonBox" name="applyNCloseBtnBox">
+         <property name="standardButtons">
+          <set>QDialogButtonBox::Apply|QDialogButtonBox::Close</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>streetEdit</tabstop>
+  <tabstop>streetNrEdit</tabstop>
+  <tabstop>plzEdit</tabstop>
+  <tabstop>cityEdit</tabstop>
+  <tabstop>countryCmbBox</tabstop>
+ </tabstops>
+ <resources>
+  <include location="myresource.qrc"/>
+ </resources>
+ <connections/>
+</ui>

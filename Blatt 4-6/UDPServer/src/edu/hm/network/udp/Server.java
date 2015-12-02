@@ -76,6 +76,7 @@ public class Server {
 		MyPacket myPacket = receiver.receive();
 
 		if(myPacket == null) {
+			System.err.println("Fehler Paket = 0");
 			return;
 		} else {
 			/* sum up length of all received packets */
