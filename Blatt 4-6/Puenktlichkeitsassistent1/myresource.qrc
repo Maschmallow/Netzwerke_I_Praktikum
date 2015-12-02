@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/MyFiles"/>
+    <qresource prefix="/MyFiles/Icons">
+        <file>resources/earthicon256x256.png</file>
+        <file>resources/Exit32x32.png</file>
+        <file>resources/earthicon32x32.png</file>
+        <file>resources/delete32x32.png</file>
+        <file>resources/edit32x32.png</file>
+    </qresource>
+    <qresource prefix="/MyFiles/FlagIcons">
+        <file>resources/countries/Austria.png</file>
+        <file>resources/countries/de.png</file>
+        <file>resources/countries/fr.png</file>
+        <file>resources/countries/Italy.png</file>
+        <file>resources/countries/Poland.png</file>
+        <file>resources/countries/Spain.png</file>
+    </qresource>
+</RCC>

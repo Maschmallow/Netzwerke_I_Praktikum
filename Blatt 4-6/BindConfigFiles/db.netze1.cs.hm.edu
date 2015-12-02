@@ -1,0 +1,25 @@
+;
+; BIND data file for local loopback interface
+;
+$TTL	604800 ; die dauer in Sekunden die der Record gecacht wird
+@	IN	SOA	s.netze1.cs.hm.edu. admin.netze1.cs.hm.edu. (
+			      4		; Serial zum Synch mit slaves falls zone file geändertwird
+			 604800		; Refresh
+			    900		; Retry every 3 minutes
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+;
+
+; name servers - NS records defines the authoriative name server(s) for the domain
+@	IN	NS	s.netze1.cs.hm.edu.
+
+; name servers - A records
+a			IN	A	192.168.0.3
+b			IN	A	192.168.0.4
+s			IN	A	192.168.0.254 ; real host name
+@			IN	A	192.168.0.254
+mail			IN	A	192.168.0.254
+
+; name servers - MX records specifies the name and relative prefrence of mail servers
+; and is used by external SMTP Agents to toure incoming mail for the domain
+@			IN	MX	10	mail.netze1.cs.hm.edu.
