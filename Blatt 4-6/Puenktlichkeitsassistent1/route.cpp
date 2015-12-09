@@ -149,3 +149,4 @@ Qt::ItemFlags TableModel::flags(const QModelIndex &index) const
 
     return QAbstractTableModel::flags(index) | Qt::ItemIsEditable;
 }
+

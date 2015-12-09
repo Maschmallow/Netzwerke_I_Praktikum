@@ -3,6 +3,7 @@
 
 #include <QMessageBox>
 #include <QSortFilterProxyModel>
+
 #include "network.h"
 
 #include "newroutedialog.h"
@@ -37,10 +38,67 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this, SIGNAL(SelectionChanged(QItemSelection)),
             this, SLOT(UpdateActions(QItemSelection)));
 
+    connect(ui->calcBtn, SIGNAL(clicked()), this, SLOT(CalcButtonPressed()));
+
     for (int c = 0; c < ui->routeTbl->horizontalHeader()->count(); ++c)
     {
         ui->routeTbl->horizontalHeader()->setSectionResizeMode(c, QHeaderView::Stretch);
     }
+
+    ui->arrivalTimeEd->setTime(QTime::currentTime());
+
+}
+
+void MainWindow::CalcButtonPressed() {
+    if (m_pTableModel->getList().size() < 2) {
+        QMessageBox::information(this, tr("Zu wenig Wegpunkte"),
+                                 tr("Es braucht eine Start- und eine Zieladdresse."));
+        return;
+    }
+
+    QString querie = SetupMessage();
+    QString reply = m_pNetwork->getDirection(querie);
+
+    // Now parse reply
+
+    m_pNetwork->activateLamp(1);
+}
+
+QString MainWindow::SetupMessage() {
+    QString getRequest = "GET /maps/api/directions/json?origin=";
+
+    QList<Address> *list = &m_pTableModel->getList();
+
+    Address StartAddress = list->first();
+    getRequest += StartAddress.getStreet() +
+            StartAddress.getStreetNr() +
+            StartAddress.getPlz() +
+            StartAddress.getCity() +
+            StartAddress.country;
+
+    getRequest += "&destination=";
+    Address EndAddress = list->last();
+    getRequest += EndAddress.getStreet() +
+            EndAddress.getStreetNr() +
+            EndAddress.getPlz() +
+            EndAddress.getCity() +
+            EndAddress.country;
+
+    if (list->size() > 2) {
+        getRequest += "&waypoints=";
+        int nrOfIntermediatWaypoints = list->size()-1;
+
+        for(int i = 1; i < nrOfIntermediatWaypoints; i++) {
+            Address tmp = list->at(i);
+            getRequest += tmp.getStreet() +
+                    tmp.getStreetNr() +
+                    tmp.getPlz() +
+                    tmp.getCity() +
+                    tmp.country + "|";
+        }
+    }
+
+    return getRequest;
 }
 
 void MainWindow::EditWaypointDialog() {
@@ -103,6 +161,8 @@ void MainWindow::UpdateActions(const QItemSelection &selection) {
         ui->actionDelete->setEnabled(false);
         ui->actionEdit->setEnabled(false);
     }
+
+
 }
 
 void MainWindow::RemoveWaypoint() {
@@ -114,6 +174,10 @@ void MainWindow::RemoveWaypoint() {
         int row = index.row();
         m_pTableModel->removeRows(row, 1, QModelIndex());
     }
+
+    if (m_pTableModel->getList().size() < 5) {
+        ui->actionNewWaypoint->setEnabled(true);
+    }
 }
 
 void MainWindow::AddNewWaypointDialog() {
@@ -122,7 +186,6 @@ void MainWindow::AddNewWaypointDialog() {
     if (aDialog.exec()) {
         Address a = aDialog.getAddress();
         addEntry(a);
-        m_pNetwork->getDirection();
     }
 }
 
@@ -148,6 +211,10 @@ void MainWindow::addEntry(Address& address) {
     } else {
         QMessageBox::information(this, tr("Doppelte Adressen"),
                                  tr("Die Addresse existiert bereits"));
+    }
+
+    if (m_pTableModel->getList().size() > 4) {
+        ui->actionNewWaypoint->setEnabled(false);
     }
 }
 

@@ -26,11 +26,15 @@ public:
 
     void addEntry(Address& address);
 
+    QString SetupMessage();
+
 private slots:
     void AddNewWaypointDialog();
     void EditWaypointDialog();
     void RemoveWaypoint();
     void UpdateActions(const QItemSelection &selection);
+    void CalcButtonPressed();
+
 signals:
     void SelectionChanged(const QItemSelection &selected);
 private:

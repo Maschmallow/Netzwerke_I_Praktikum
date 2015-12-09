@@ -39,7 +39,6 @@ private:
 public:
     WinStreamNetwork();
 
-    int SysCreateSocket(int nLocalPort);
     int SysDestroySocket();
 
     // Establish TCP connection
@@ -48,6 +47,7 @@ public:
     void Close();
 
     int Write(void *data, int len);
+    QByteArray Read();
 
     SOCKET getSocket() const { return m_s; }
 };
@@ -60,7 +60,7 @@ public:
     int Startup();
     int Connect(const SOCKET s);
     int Write(void *data, int len);
-    int Read();
+    QByteArray Read();
     void Close();
 };
 
@@ -69,17 +69,18 @@ private:
     WinNetworkInit m_sysNetworkInit;
     WinStreamNetwork m_sysStreamNetwork;
     OpenSSL m_openSSL;
+    bool m_useSSL;
 public:
-    bool Connect(const QString &hostName, const int port);
-    int Write(const QString &message, bool useSSL);
+    bool Connect(const QString &hostName, const int port, bool useSSL);
+    int Write(const QString &message);
     void Close();
     QString Read();
 };
 
 class MyNetwork : public Network {
 public:
-    void activateLamp();
-    void getDirection();
+    bool activateLamp(long color);
+    QString getDirection(const QString& message);
 };
 
 #endif // NETWORK_H
