@@ -37,6 +37,30 @@ struct Address {
         return street != rhs.street || streetNr != rhs.streetNr ||
                 country != rhs.country || city != rhs.city || plz != rhs.plz;
     }
+
+    QString getStreet() {
+        if (!street.isEmpty())
+            return street + ",";
+        else return street;
+    }
+
+    QString getStreetNr() {
+        if (!street.isEmpty())
+            return streetNr + ",";
+        else return streetNr;
+    }
+
+    QString getPlz() {
+        if (!plz.isEmpty())
+            return plz + ",";
+        else return plz;
+    }
+
+    QString getCity() {
+        if (!city.isEmpty())
+            return city + ",";
+        else return city;
+    }
 };
 
 class Route {

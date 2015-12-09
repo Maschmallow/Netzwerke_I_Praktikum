@@ -21,8 +21,10 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTableView>
+#include <QtWidgets/QTimeEdit>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -43,8 +45,13 @@ public:
     QGridLayout *gridLayout;
     QWebView *webView;
     QFormLayout *formLayout;
-    QLabel *distanceHeadLbl;
     QLabel *distanceLbl;
+    QLabel *distanceHeadLbl;
+    QLabel *durationHeadLbl;
+    QLabel *durationLbl;
+    QTimeEdit *arrivalTimeEd;
+    QLabel *arrivalHeadLbl;
+    QPushButton *calcBtn;
     QMenuBar *menuBar;
     QMenu *menuDatei;
     QToolBar *mainToolBar;
@@ -111,27 +118,61 @@ public:
         formLayout->setSpacing(6);
         formLayout->setObjectName(QStringLiteral("formLayout"));
         formLayout->setSizeConstraint(QLayout::SetFixedSize);
-        distanceHeadLbl = new QLabel(centralWidget);
-        distanceHeadLbl->setObjectName(QStringLiteral("distanceHeadLbl"));
-        QSizePolicy sizePolicy1(QSizePolicy::Maximum, QSizePolicy::Preferred);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(distanceHeadLbl->sizePolicy().hasHeightForWidth());
-        distanceHeadLbl->setSizePolicy(sizePolicy1);
-        distanceHeadLbl->setMaximumSize(QSize(200, 16777215));
-
-        formLayout->setWidget(0, QFormLayout::LabelRole, distanceHeadLbl);
-
         distanceLbl = new QLabel(centralWidget);
         distanceLbl->setObjectName(QStringLiteral("distanceLbl"));
-        QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Preferred);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(distanceLbl->sizePolicy().hasHeightForWidth());
-        distanceLbl->setSizePolicy(sizePolicy2);
+        QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Preferred);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(distanceLbl->sizePolicy().hasHeightForWidth());
+        distanceLbl->setSizePolicy(sizePolicy1);
         distanceLbl->setMaximumSize(QSize(300, 16777215));
 
-        formLayout->setWidget(0, QFormLayout::FieldRole, distanceLbl);
+        formLayout->setWidget(3, QFormLayout::FieldRole, distanceLbl);
+
+        distanceHeadLbl = new QLabel(centralWidget);
+        distanceHeadLbl->setObjectName(QStringLiteral("distanceHeadLbl"));
+        QSizePolicy sizePolicy2(QSizePolicy::Maximum, QSizePolicy::Preferred);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(distanceHeadLbl->sizePolicy().hasHeightForWidth());
+        distanceHeadLbl->setSizePolicy(sizePolicy2);
+        distanceHeadLbl->setMaximumSize(QSize(200, 16777215));
+
+        formLayout->setWidget(3, QFormLayout::LabelRole, distanceHeadLbl);
+
+        durationHeadLbl = new QLabel(centralWidget);
+        durationHeadLbl->setObjectName(QStringLiteral("durationHeadLbl"));
+        sizePolicy2.setHeightForWidth(durationHeadLbl->sizePolicy().hasHeightForWidth());
+        durationHeadLbl->setSizePolicy(sizePolicy2);
+        durationHeadLbl->setMaximumSize(QSize(200, 16777215));
+
+        formLayout->setWidget(4, QFormLayout::LabelRole, durationHeadLbl);
+
+        durationLbl = new QLabel(centralWidget);
+        durationLbl->setObjectName(QStringLiteral("durationLbl"));
+        sizePolicy1.setHeightForWidth(durationLbl->sizePolicy().hasHeightForWidth());
+        durationLbl->setSizePolicy(sizePolicy1);
+        durationLbl->setMaximumSize(QSize(300, 16777215));
+
+        formLayout->setWidget(4, QFormLayout::FieldRole, durationLbl);
+
+        arrivalTimeEd = new QTimeEdit(centralWidget);
+        arrivalTimeEd->setObjectName(QStringLiteral("arrivalTimeEd"));
+
+        formLayout->setWidget(0, QFormLayout::FieldRole, arrivalTimeEd);
+
+        arrivalHeadLbl = new QLabel(centralWidget);
+        arrivalHeadLbl->setObjectName(QStringLiteral("arrivalHeadLbl"));
+        sizePolicy2.setHeightForWidth(arrivalHeadLbl->sizePolicy().hasHeightForWidth());
+        arrivalHeadLbl->setSizePolicy(sizePolicy2);
+        arrivalHeadLbl->setMaximumSize(QSize(200, 16777215));
+
+        formLayout->setWidget(0, QFormLayout::LabelRole, arrivalHeadLbl);
+
+        calcBtn = new QPushButton(centralWidget);
+        calcBtn->setObjectName(QStringLiteral("calcBtn"));
+
+        formLayout->setWidget(5, QFormLayout::FieldRole, calcBtn);
 
 
         gridLayout->addLayout(formLayout, 0, 3, 1, 1);
@@ -204,8 +245,13 @@ public:
         actionDelete->setToolTip(QApplication::translate("MainWindow", "L\303\266sche einen Wegpunkt", 0));
 #endif // QT_NO_TOOLTIP
         actionDelete->setShortcut(QApplication::translate("MainWindow", "Ctrl+D", 0));
-        distanceHeadLbl->setText(QApplication::translate("MainWindow", "Entfernung:", 0));
         distanceLbl->setText(QApplication::translate("MainWindow", "0km", 0));
+        distanceHeadLbl->setText(QApplication::translate("MainWindow", "Entfernung:", 0));
+        durationHeadLbl->setText(QApplication::translate("MainWindow", "Dauer:", 0));
+        durationLbl->setText(QApplication::translate("MainWindow", "0km", 0));
+        arrivalTimeEd->setDisplayFormat(QApplication::translate("MainWindow", "HH:mm:ss", 0));
+        arrivalHeadLbl->setText(QApplication::translate("MainWindow", "Gew\303\274nschte Ankunftszeit", 0));
+        calcBtn->setText(QApplication::translate("MainWindow", "Berechnen", 0));
         menuDatei->setTitle(QApplication::translate("MainWindow", "Datei", 0));
     } // retranslateUi
 

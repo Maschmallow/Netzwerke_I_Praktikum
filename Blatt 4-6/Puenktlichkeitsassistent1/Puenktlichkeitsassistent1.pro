@@ -16,7 +16,7 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     newroutedialog.cpp \
     route.cpp \
-    network.cpp
+    network.cpp \
 
 
 HEADERS  += mainwindow.h \
