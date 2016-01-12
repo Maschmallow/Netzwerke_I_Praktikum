@@ -2,11 +2,16 @@
 #include "ui_mainwindow.h"
 
 #include <QMessageBox>
-#include <QSortFilterProxyModel>
+#include <QStandardItemModel>
+
+#include <chrono>
+#include <ctime>
 
 #include "network.h"
 
 #include "newroutedialog.h"
+#include "aboutdialog.h"
+#include "parsejson.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -20,6 +25,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionNewWaypoint, SIGNAL(triggered()), this, SLOT(AddNewWaypointDialog()));
     connect(ui->actionEdit, SIGNAL(triggered()), this, SLOT(EditWaypointDialog()));
     connect(ui->actionDelete, SIGNAL(triggered()), this, SLOT(RemoveWaypoint()));
+    connect(ui->actionAbout, SIGNAL(triggered()), this, SLOT(AboutDialog()));
+    connect(ui->actionMoveUp, SIGNAL(triggered()), this, SLOT(MoveUp()));
+    connect(ui->actionMoveDown, SIGNAL(triggered()), this, SLOT(MoveDown()));
 
     m_pTableModel = new TableModel(this);
 
@@ -29,6 +37,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->actionEdit->setEnabled(false);
     ui->actionDelete->setEnabled(false);
+    ui->actionMoveUp->setEnabled(false);
+    ui->actionMoveDown->setEnabled(false);
 
     connect(ui->routeTbl->selectionModel(),
             SIGNAL(selectionChanged(QItemSelection, QItemSelection)),
@@ -46,7 +56,7 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 
     ui->arrivalTimeEd->setTime(QTime::currentTime());
-
+    ui->arrivalTimeEd->setDate(QDate::currentDate());
 }
 
 void MainWindow::CalcButtonPressed() {
@@ -60,8 +70,42 @@ void MainWindow::CalcButtonPressed() {
     QString reply = m_pNetwork->getDirection(querie);
 
     // Now parse reply
+    ParseJson p(this);
+    if (p.parse(reply))
+    {
+        QTime duration(0,0);
+        duration = duration.addSecs(p.getDuration());
+        ui->durationLbl->setText(duration.toString());
 
-    m_pNetwork->activateLamp(1);
+        double distanceInKm = p.getDistance() / 1000.0;
+        QString number = QString::number(distanceInKm);
+
+        ui->distanceLbl->setText( number.replace(".",",") + " km");
+
+        QDateTime desiredArrivalTime = ui->arrivalTimeEd->dateTime();
+        qint64 curTime = QDateTime::currentDateTime().toTime_t();
+        qint64 actualArrivalTime = curTime + p.getDuration();
+
+        int difference =
+                desiredArrivalTime.toTime_t() - actualArrivalTime;
+
+        if (difference > 15000) {
+            // too early
+            ui->statusLbl->setText("Sie sind zu früh. :/");
+            m_pNetwork->activateLamp(MyNetwork::Yellow);
+        }
+        else if(difference <= 15000 && difference >= 0)
+        {
+            // perfect timing
+            ui->statusLbl->setText("Sie werden rechtzeitig ankommen :).");
+            m_pNetwork->activateLamp(MyNetwork::Green);
+        }
+        else {
+            // too late
+            ui->statusLbl->setText("Sie werden zu spät ankommen. :(");
+            m_pNetwork->activateLamp(MyNetwork::Red);
+        }
+    }
 }
 
 QString MainWindow::SetupMessage() {
@@ -97,7 +141,7 @@ QString MainWindow::SetupMessage() {
                     tmp.country + "|";
         }
     }
-
+    getRequest += "&language=de";
     return getRequest;
 }
 
@@ -157,12 +201,16 @@ void MainWindow::UpdateActions(const QItemSelection &selection) {
     if(!indexes.isEmpty()) {
         ui->actionEdit->setEnabled(true);
         ui->actionDelete->setEnabled(true);
+        if (m_pTableModel->getList().size() > 1) {
+            ui->actionMoveDown->setEnabled(true);
+            ui->actionMoveUp->setEnabled(true);
+        }
     } else {
         ui->actionDelete->setEnabled(false);
         ui->actionEdit->setEnabled(false);
+        ui->actionMoveDown->setEnabled(false);
+        ui->actionMoveUp->setEnabled(false);
     }
-
-
 }
 
 void MainWindow::RemoveWaypoint() {
@@ -178,6 +226,39 @@ void MainWindow::RemoveWaypoint() {
     if (m_pTableModel->getList().size() < 5) {
         ui->actionNewWaypoint->setEnabled(true);
     }
+}
+
+void MainWindow::MoveUp() {
+    QItemSelectionModel *selectionModel = ui->routeTbl->selectionModel();
+
+    QModelIndexList indexes = selectionModel->selectedRows();
+
+    foreach(QModelIndex index, indexes) {
+        int row = index.row();
+        if(row == 0)
+            continue;
+        m_pTableModel->moveRows(QModelIndex(), row, row, QModelIndex(), row-1);
+    }
+}
+
+void MainWindow::MoveDown()
+{
+    QItemSelectionModel *selectionModel = ui->routeTbl->selectionModel();
+
+    QModelIndexList indexes = selectionModel->selectedRows();
+
+    foreach(QModelIndex index, indexes) {
+        int row = index.row();
+        if(row == m_pTableModel->getList().size()-1)
+            continue;
+        m_pTableModel->moveRows(QModelIndex(), row+1, row+1, QModelIndex(), row);
+    }
+}
+
+void MainWindow::AboutDialog() {
+    aboutdialog aDialog;
+
+    aDialog.exec();
 }
 
 void MainWindow::AddNewWaypointDialog() {

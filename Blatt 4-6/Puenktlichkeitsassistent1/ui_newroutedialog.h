@@ -179,7 +179,25 @@ public:
     void retranslateUi(QDialog *NewRouteDialog)
     {
         NewRouteDialog->setWindowTitle(QApplication::translate("NewRouteDialog", "Neuer Wegpunkt", 0));
+#ifndef QT_NO_WHATSTHIS
+        streetNrEdit->setWhatsThis(QApplication::translate("NewRouteDialog", "Geben Sie die Stra\303\237en Nummer des Wegpunktes ein.", 0));
+#endif // QT_NO_WHATSTHIS
+#ifndef QT_NO_WHATSTHIS
+        plzEdit->setWhatsThis(QApplication::translate("NewRouteDialog", "Geben Sie die Postleitzahl des Wegpunktes ein.", 0));
+#endif // QT_NO_WHATSTHIS
         label->setText(QApplication::translate("NewRouteDialog", "Hausnummer:", 0));
+#ifndef QT_NO_TOOLTIP
+        streetEdit->setToolTip(QApplication::translate("NewRouteDialog", "Test", 0));
+#endif // QT_NO_TOOLTIP
+#ifndef QT_NO_STATUSTIP
+        streetEdit->setStatusTip(QString());
+#endif // QT_NO_STATUSTIP
+#ifndef QT_NO_WHATSTHIS
+        streetEdit->setWhatsThis(QApplication::translate("NewRouteDialog", "Geben Sie die Stra\303\237e des Wegpunktes ein.", 0));
+#endif // QT_NO_WHATSTHIS
+#ifndef QT_NO_WHATSTHIS
+        cityEdit->setWhatsThis(QApplication::translate("NewRouteDialog", "Geben Sie die Stadt des Wegpunktes ein.", 0));
+#endif // QT_NO_WHATSTHIS
         label_2->setText(QApplication::translate("NewRouteDialog", "PLZ", 0));
         streetLbl->setText(QApplication::translate("NewRouteDialog", "Stra\303\237e:", 0));
         plzCityLbl->setText(QApplication::translate("NewRouteDialog", "Stadt:", 0));
@@ -191,6 +209,9 @@ public:
         countryCmbBox->setItemText(4, QApplication::translate("NewRouteDialog", "Spanien", 0));
         countryCmbBox->setItemText(5, QApplication::translate("NewRouteDialog", "\303\226sterreich", 0));
 
+#ifndef QT_NO_WHATSTHIS
+        countryCmbBox->setWhatsThis(QApplication::translate("NewRouteDialog", "W\303\244hlen Sie das Land des Wegpunktes.", 0));
+#endif // QT_NO_WHATSTHIS
     } // retranslateUi
 
 };

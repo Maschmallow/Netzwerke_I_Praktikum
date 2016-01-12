@@ -1,5 +1,7 @@
 #include "route.h"
 
+#include <QDebug>
+
 TableModel::TableModel(QObject *parent)
     : QAbstractTableModel(parent)
 {
@@ -93,6 +95,24 @@ bool TableModel::insertRows(int position, int rows, const QModelIndex &index)
     return true;
 }
 //! [4]
+
+bool TableModel::moveRows(const QModelIndex &sourceParent,
+                          int sourceRow,
+                          int count,
+                          const QModelIndex &destinationParent,
+                          int destinationChild)
+{
+    Q_UNUSED(sourceParent);
+    Q_UNUSED(destinationParent);
+    beginMoveRows(QModelIndex(), sourceRow, sourceRow, QModelIndex(), destinationChild);
+
+    for (int i = 0; i <= sourceRow-count; i++)
+       m_listOfAddresses.swap(sourceRow+i, destinationChild);
+
+    endMoveRows();
+    return true;
+}
+
 
 //! [5]
 bool TableModel::removeRows(int position, int rows, const QModelIndex &index)

@@ -79,6 +79,12 @@ public:
 
 class MyNetwork : public Network {
 public:
+    enum Color {
+        Red = 0,
+        Green = 25500,
+        Yellow = 12750
+    };
+
     bool activateLamp(long color);
     QString getDirection(const QString& message);
 };

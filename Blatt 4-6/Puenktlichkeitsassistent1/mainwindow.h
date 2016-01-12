@@ -34,6 +34,9 @@ private slots:
     void RemoveWaypoint();
     void UpdateActions(const QItemSelection &selection);
     void CalcButtonPressed();
+    void AboutDialog();
+    void MoveUp();
+    void MoveDown();
 
 signals:
     void SelectionChanged(const QItemSelection &selected);

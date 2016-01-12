@@ -17,15 +17,20 @@ SOURCES += main.cpp\
     newroutedialog.cpp \
     route.cpp \
     network.cpp \
+    aboutdialog.cpp \
+    parsejson.cpp
 
 
 HEADERS  += mainwindow.h \
     newroutedialog.h \
     route.h \
-    network.h
+    network.h \
+    aboutdialog.h \
+    parsejson.h
 
 FORMS    += mainwindow.ui \
-    newroutedialog.ui
+    newroutedialog.ui \
+    aboutdialog.ui
 
 RESOURCES += \
     myresource.qrc
@@ -36,5 +41,6 @@ LIBS += -L$$PWD/3rdParty/openssl-1.0.1p.64/lib -lssleay32
 LIBS += -L$$PWD/3rdParty/openssl-1.0.1p.64/lib -llibeay32
 
 INCLUDEPATH += $$PWD/3rdParty/openssl-1.0.1p.64/include
+INCLUDEPATH += $$PWD/3rdParty/rapidjson
 
 RC_ICONS = myicon.ico

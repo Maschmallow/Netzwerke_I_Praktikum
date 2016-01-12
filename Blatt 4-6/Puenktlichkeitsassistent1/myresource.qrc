@@ -6,6 +6,9 @@
         <file>resources/earthicon32x32.png</file>
         <file>resources/delete32x32.png</file>
         <file>resources/edit32x32.png</file>
+        <file>resources/help32x32.png</file>
+        <file>resources/down32x32.png</file>
+        <file>resources/up32x32.png</file>
     </qresource>
     <qresource prefix="/MyFiles/FlagIcons">
         <file>resources/countries/Austria.png</file>

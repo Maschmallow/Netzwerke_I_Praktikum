@@ -3,8 +3,10 @@
 #include <openssl/err.h>
 #include <QMessageBox>
 #include <QDebug>
+#include <QTextCodec>
+#include <QFile>
 
-#define MAX_BUFFER 512
+#define MAX_BUFFER 1500
 
 WinNetworkInit::WinNetworkInit(WORD wVersionRequired /*= MAKEWORD(2, 2)*/) {
     m_wVersionRequired = wVersionRequired;
@@ -90,6 +92,10 @@ int WinStreamNetwork::Connect(LPSTR pszRemoteName, int nRemotePort) {
         break;
     }
 
+    DWORD timeout = 1600;
+    setsockopt(m_s, SOL_SOCKET, SO_RCVTIMEO, reinterpret_cast<const char*>(&timeout),
+               sizeof(timeout));
+
     return NETWORK_NOERROR;
 }
 
@@ -128,7 +134,7 @@ bool Network::Connect(const QString &hostName, const int port, bool useSSL) {
     if (m_sysNetworkInit.SysStartup() != NETWORK_NOERROR)
         return false;
 
-    QByteArray ba = hostName.toLatin1();
+    QByteArray ba = hostName.toUtf8();
 
     if(m_sysStreamNetwork.Connect(ba.data(), port) != NETWORK_NOERROR)
         return false;
@@ -145,7 +151,7 @@ bool Network::Connect(const QString &hostName, const int port, bool useSSL) {
 
 int Network::Write(const QString &message) {
     int ret = 0;
-    QByteArray ba = message.toLatin1();
+    QByteArray ba = message.toUtf8();
     if (m_useSSL) {
         ret = m_openSSL.Write(ba.data(), ba.size());
     } else {
@@ -156,7 +162,7 @@ int Network::Write(const QString &message) {
 
  QString Network::Read() {
      if (m_useSSL)
-         return m_openSSL.Read();
+         return QTextCodec::codecForMib(106)->toUnicode(m_openSSL.Read());
      else
          return m_sysStreamNetwork.Read();
  }
@@ -179,6 +185,9 @@ int OpenSSL::Startup() {
     // enabled connections
     m_ssl_ctx = SSL_CTX_new (SSLv23_client_method());
 
+    // retry read automatically
+    SSL_CTX_set_mode(m_ssl_ctx, SSL_MODE_AUTO_RETRY);
+
     return NETWORK_NOERROR;
 }
 
@@ -198,21 +207,41 @@ int OpenSSL::Write(void *buf, int len) {
 }
 
 QByteArray OpenSSL::Read() {
-    QByteArray received;
-    received.reserve(4096); // pre allocate 4k space
     int n = 0;
     char buffer[MAX_BUFFER]; // packets will be send in MAX_BUFFER size
-    memset(buffer, 0, MAX_BUFFER);
-
+    char *totalbuffer = new char[1024*1024];
+    memset(totalbuffer, 0, 1024*1024);
+    int nTotalLength = 0;
     do {
         // read bytes from a TLS/SSL connection
         n = SSL_read(m_conn, buffer, MAX_BUFFER);
-        if (n > 0)
-            qDebug() << "Bytes empfangen: " << n << "\n";
 
-        received += buffer;
+        switch (n)
+        {
+        case SSL_ERROR_NONE:
+        {
+            break;
+        }
+        case SSL_ERROR_WANT_READ:
+        {
+            break;
+        }
+        case SSL_ERROR_WANT_WRITE:
+        {
+            break;
+        }
+        }
+
+        memcpy_s((totalbuffer+nTotalLength), 1024*1024, buffer, MAX_BUFFER);
+        nTotalLength += n;
     } while(n > 0);
 
+    QByteArray received(totalbuffer, nTotalLength);
+    QFile file("network.txt");
+    file.open(QIODevice::WriteOnly);
+    QTextStream out(&file);
+    out << totalbuffer;
+    file.close();
     return received;
 }
 
@@ -255,7 +284,7 @@ bool MyNetwork::activateLamp(long color) {
     QString body = "{\"on\":true,\"bri\":254,\"hue\":";
     body += QString::number(color);
     body += ",\"sat\":254}";
-    QString post = "PUT /api/newdeveloper/lights/2/state";
+    QString post = "PUT /api/newdeveloper/lights/1/state";
     post += " HTTP/1.1\r\n";
     post += "Content-Length: ";
     post += QString::number(body.length());
@@ -277,16 +306,20 @@ bool MyNetwork::activateLamp(long color) {
 
 QString MyNetwork::getDirection(const QString& message) {
     QString reply;
-    QString request = message + "\nHTTP/1.1\r\n"
-              "Host: maps.googleapis.com\r\n";
     QString host = "maps.googleapis.com";
+    QString request = message + " HTTP/1.1\r\n"
+              "Host: " + host +  "\r\n" +
+              "Accept:text/html\r\n" +
+              "Accept-Language: de,en-US;q=0.7,en;q=0.3\r\n" +
+              "Connection: keep-alive\r\n\r\n";
     if(!Connect(host, 443, true))
         return reply;
     if(Write(request) != NETWORK_NOERROR) {
         return reply;
     }
-    qDebug() << "Anfrage versendet warte auf Antwort...\n";
+
     reply = Read();
+    qDebug() << reply;
     Close();
 
     return reply;

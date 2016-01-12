@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[11];
-    char stringdata0[150];
+    QByteArrayData data[14];
+    char stringdata0[178];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -39,13 +39,17 @@ QT_MOC_LITERAL(6, 74, 18), // "EditWaypointDialog"
 QT_MOC_LITERAL(7, 93, 14), // "RemoveWaypoint"
 QT_MOC_LITERAL(8, 108, 13), // "UpdateActions"
 QT_MOC_LITERAL(9, 122, 9), // "selection"
-QT_MOC_LITERAL(10, 132, 17) // "CalcButtonPressed"
+QT_MOC_LITERAL(10, 132, 17), // "CalcButtonPressed"
+QT_MOC_LITERAL(11, 150, 11), // "AboutDialog"
+QT_MOC_LITERAL(12, 162, 6), // "MoveUp"
+QT_MOC_LITERAL(13, 169, 8) // "MoveDown"
 
     },
     "MainWindow\0SelectionChanged\0\0"
     "QItemSelection\0selected\0AddNewWaypointDialog\0"
     "EditWaypointDialog\0RemoveWaypoint\0"
-    "UpdateActions\0selection\0CalcButtonPressed"
+    "UpdateActions\0selection\0CalcButtonPressed\0"
+    "AboutDialog\0MoveUp\0MoveDown"
 };
 #undef QT_MOC_LITERAL
 
@@ -55,7 +59,7 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -63,14 +67,17 @@ static const uint qt_meta_data_MainWindow[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   44,    2, 0x06 /* Public */,
+       1,    1,   59,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       5,    0,   47,    2, 0x08 /* Private */,
-       6,    0,   48,    2, 0x08 /* Private */,
-       7,    0,   49,    2, 0x08 /* Private */,
-       8,    1,   50,    2, 0x08 /* Private */,
-      10,    0,   53,    2, 0x08 /* Private */,
+       5,    0,   62,    2, 0x08 /* Private */,
+       6,    0,   63,    2, 0x08 /* Private */,
+       7,    0,   64,    2, 0x08 /* Private */,
+       8,    1,   65,    2, 0x08 /* Private */,
+      10,    0,   68,    2, 0x08 /* Private */,
+      11,    0,   69,    2, 0x08 /* Private */,
+      12,    0,   70,    2, 0x08 /* Private */,
+      13,    0,   71,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
@@ -80,6 +87,9 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 3,    9,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
 
        0        // eod
@@ -97,6 +107,9 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 3: _t->RemoveWaypoint(); break;
         case 4: _t->UpdateActions((*reinterpret_cast< const QItemSelection(*)>(_a[1]))); break;
         case 5: _t->CalcButtonPressed(); break;
+        case 6: _t->AboutDialog(); break;
+        case 7: _t->MoveUp(); break;
+        case 8: _t->MoveDown(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -136,13 +149,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 9;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 9)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 6;
+        _id -= 9;
     }
     return _id;
 }

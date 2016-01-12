@@ -1,0 +1,493 @@
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8
+Date: Tue, 12 Jan 2016 01:09:07 GMT
+Expires: Wed, 13 Jan 2016 01:09:07 GMT
+Cache-Control: public, max-age=86400
+Server: mafe
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+Alternate-Protocol: 443:quic,p=1
+Alt-Svc: quic=":443"; ma=604800; v="30,29,28,27,26,25"
+Accept-Ranges: none
+Vary: Accept-Encoding
+Transfer-Encoding: chunked
+
+4a94
+{
+   "geocoded_waypoints" : [
+      {
+         "geocoder_status" : "OK",
+         "place_id" : "ChIJm59_J-B1nkcRklTQ7hRHI6U",
+         "types" : [ "street_address" ]
+      },
+      {
+         "geocoder_status" : "OK",
+         "place_id" : "ChIJC2wZAirfnUcRJJiGvLe_F_k",
+         "types" : [ "route" ]
+      },
+      {
+         "geocoder_status" : "OK",
+         "place_id" : "ChIJmd1r2CjfnUcRkkCEAz22i2s",
+         "types" : [ "route" ]
+      }
+   ],
+   "routes" : [
+      {
+         "bounds" : {
+            "northeast" : {
+               "lat" : 48.1663253,
+               "lng" : 11.5557279
+            },
+            "southwest" : {
+               "lat" : 48.09859489999999,
+               "lng" : 11.5168613
+            }
+         },
+         "copyrights" : "Kartendaten ¬© 2016 GeoBasis-DE/BKG (¬©2009), Google",
+         "legs" : [
+            {
+               "distance" : {
+                  "text" : "12,5 km",
+                  "value" : 12504
+               },
+               "duration" : {
+                  "text" : "19 Minuten",
+                  "value" : 1149
+               },
+               "end_address" : "Kleinstra√?e, 81379 M√ºnchen, Deutschland",
+               "end_location" : {
+                  "lat" : 48.09859489999999,
+                  "lng" : 11.5399827
+               },
+               "start_address" : "Lothstra√?e 64, 80335 M√ºnchen, Deutschland",
+               "start_location" : {
+                  "lat" : 48.15527660000001,
+                  "lng" : 11.5557279
+               },
+               "steps" : [
+                  {
+                     "distance" : {
+                        "text" : "0,2 km",
+                        "value" : 174
+                     },
+                     "duration" : {
+                        "text" : "1 Minute",
+                        "value" : 39
+                     },
+                     "end_location" : {
+                        "lat" : 48.1543082,
+                        "lng" : 11.5538844
+                     },
+                     "html_instructions" : "Auf \u003cb\u003eLothstra√?e\u003c/b\u003e nach \u003cb\u003eS√ºdwesten\u003c/b\u003e Richtung \u003cb\u003eDachauer Str.\u003c/b\u003e starten",
+                     "polyline" : {
+                        "points" : "oi|dHi~oeA`EpJ"
+                     },
+                     "start_location" : {
+                        "lat" : 48.15527660000001,
+                        "lng" : 11.5557279
+                     },
+                     "travel_mode" : "DRIVING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "1,7 km",
+                        "value" : 1748
+                     },
+                     "duration" : {
+                        "text" : "4 Minuten",
+                        "value" : 243
+                     },
+                     "end_location" : {
+                        "lat" : 48.165915,
+                        "lng" : 11.5380992
+                     },
+                     "html_instructions" : "\u003cb\u003eRechts\u003c/b\u003e abbiegen auf \u003cb\u003eDachauer Str.\u003c/b\u003e",
+                     "maneuver" : "turn-right",
+                     "polyline" : {
+                        "points" : "mc|dHwroeAkA~A]b@UXmAxAIJILkHxJwEnGaHpIGFCFGFEDwAlBqAzASXQXSb@MTUb@w@zAKT}BxEwEzIuC|FYd@mA~BeBzCe@l@SX]`@A@{@`A_@^s@t@"
+                     },
+                     "start_location" : {
+                        "lat" : 48.1543082,
+                        "lng" : 11.5538844
+                     },
+                     "travel_mode" : "DRIVING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "0,5 km",
+                        "value" : 496
+                     },
+                     "duration" : {
+                        "text" : "1 Minute",
+                        "value" : 55
+                     },
+                     "end_location" : {
+                        "lat" : 48.16236139999999,
+                        "lng" : 11.5375113
+                     },
+                     "html_instructions" : "Scharf \u003cb\u003elinks\u003c/b\u003e auf \u003cb\u003eLandshuter Allee\u003c/b\u003e",
+                     "maneuver" : "turn-sharp-left",
+                     "polyline" : {
+                        "points" : "_l~dHcpleAWVIHGFGD_@^d@@F@TDX@nCDlCDnBDrBDbA?tB@"
+                     },
+                     "start_location" : {
+                        "lat" : 48.165915,
+                        "lng" : 11.5380992
+                     },
+                     "travel_mode" : "DRIVING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "48 m",
+                        "value" : 48
+                     },
+                     "duration" : {
+                        "text" : "1 Minute",
+                        "value" : 6
+                     },
+                     "end_location" : {
+                        "lat" : 48.1619337,
+                        "lng" : 11.5375893
+                     },
+                     "html_instructions" : "Die Auffahrt Richtung \u003cb\u003eSalzburg\u003c/b\u003e/\u003cb\u003eGarmisch-P.\u003c/b\u003e/\u003cb\u003eLindau\u003c/b\u003e/\u003cb\u003eA95\u003c/b\u003e/\u003cb\u003eA96\u003c/b\u003e nehmen",
+                     "polyline" : {
+                        "points" : "wu}dHmlleAj@CXCNG"
+                     },
+                     "start_location" : {
+                        "lat" : 48.16236139999999,
+                        "lng" : 11.5375113
+                     },
+                     "travel_mode" : "DRIVING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "0,5 km",
+                        "value" : 519
+                     },
+                     "duration" : {
+                        "text" : "1 Minute",
+                        "value" : 46
+                     },
+                     "end_location" : {
+                        "lat" : 48.1572688,
+                        "lng" : 11.5372688
+                     },
+                     "html_instructions" : "Auf \u003cb\u003eB2R\u003c/b\u003e fahren",
+                     "maneuver" : "merge",
+                     "polyline" : {
+                        "points" : "as}dH}lleAfBFz@BvGTN@L?l@BrFNL@H?nCD"
+                     },
+                     "start_location" : {
+                        "lat" : 48.1619337,
+                        "lng" : 11.5375893
+                     },
+                     "travel_mode" : "DRIVING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "5,6 km",
+                        "value" : 5554
+                     },
+                     "duration" : {
+                        "text" : "6 Minuten",
+                        "value" : 368
+                     },
+                     "end_location" : {
+                        "lat" : 48.1117179,
+                        "lng" : 11.5175053
+                     },
+                     "html_instructions" : "\u003cb\u003eLinks\u003c/b\u003e halten und auf \u003cb\u003eB2R\u003c/b\u003e bleiben",
+                     "maneuver" : "keep-left",
+                     "polyline" : {
+                        "points" : "}u|dH}jleAvEPb@@L?dFJb@DfCLB?@?N@@?V@@?tAFjHHfABpAFzABhIXvBJr@HrAHNB`@DXJb@L`@Pb@TXRZVZX\\^z@t@\\Tl@Zl@Rz@Rh@FVBD@`@BjAJhAJdAFL@?@B?PBf@Df@DD@D?J@`@DJ@B?RB`@DL@`AH`AFJ@X@b@BrBHF?F?b@Ab@A@?F?H?pAA|BK`CKn@AvBHp@DpD`@fFj@D?|BXv@Nx@Vh@PbAp@h@j@p@~@Tb@Zj@Zl@b@z@d@x@pAfChAnBbArBzAfDfAfCxD|IpClG\\r@lA|BT^b@t@bBjCdDxEx@|@r@p@JJ@?DDXPjAr@fBbAPJxAv@TJnB`AJH`C|AfAr@d@Xn@^dAf@bAd@xBx@lA^hBj@`Bf@l@P~@XvA`@^Jl@PvALL@pBRx@?L?bAApB?lGA`AEXE|AOxAWpA]v@Ov@["
+                     },
+                     "start_location" : {
+                        "lat" : 48.1572688,
+                        "lng" : 11.5372688
+                     },
+                     "travel_mode" : "DRIVING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "1,8 km",
+                        "value" : 1822
+                     },
+                     "duration" : {
+                        "text" : "2 Minuten",
+                        "value" : 128
+                     },
+                     "end_location" : {
+                        "lat" : 48.110627,
+                        "lng" : 11.5405786
+                     },
+                     "html_instructions" : "Weiter geradeaus auf \u003cb\u003eB2R\u003c/b\u003e",
+                     "maneuver" : "straight",
+                     "polyline" : {
+                        "points" : "gysdHmoheAlBw@z@a@\\W\\]PYPc@Tm@XgALo@J_AF}@JwE@}BB_FCeICeI?yIEcDI}CO}CMoBCi@e@aHMcCMiCEuB?AEcCEgE@gG?cKCyCCcB"
+                     },
+                     "start_location" : {
+                        "lat" : 48.1117179,
+                        "lng" : 11.5175053
+                     },
+                     "travel_mode" : "DRIVING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "0,4 km",
+                        "value" : 412
+                     },
+                     "duration" : {
+                        "text" : "1 Minute",
+                        "value" : 53
+                     },
+                     "end_location" : {
+                        "lat" : 48.1128727,
+                        "lng" : 11.5396813
+                     },
+                     "html_instructions" : "Ausfahrt \u003cb\u003eB11\u003c/b\u003e auf der \u003cb\u003elinken\u003c/b\u003e Seite Richtung \u003cb\u003eInnsbruck\u003c/b\u003e",
+                     "maneuver" : "ramp-left",
+                     "polyline" : {
+                        "points" : "mrsdHs_meAOk@Ea@Ea@G[EYGWK[KUKSKKQOMGOEUCQ?[DULYVOT[t@MXQTOh@W~@e@pAWdACNALA\\"
+                     },
+                     "start_location" : {
+                        "lat" : 48.110627,
+                        "lng" : 11.5405786
+                     },
+                     "travel_mode" : "DRIVING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "1,6 km",
+                        "value" : 1608
+                     },
+                     "duration" : {
+                        "text" : "3 Minuten",
+                        "value" : 185
+                     },
+                     "end_location" : {
+                        "lat" : 48.0986785,
+                        "lng" : 11.5416298
+                     },
+                     "html_instructions" : "\u003cb\u003eLinks\u003c/b\u003e abbiegen auf \u003cb\u003ePlinganserstra√?e\u003c/b\u003e/\u003cb\u003eB11\u003c/b\u003e\u003cdiv style=\"font-size:0.9em\"\u003eWeiter auf B11\u003c/div\u003e",
+                     "maneuver" : "turn-left",
+                     "polyline" : {
+                        "points" : "m`tdH_zleA@l@PA\\?~GMZCb@Ed@Ab@AVA^GhAIt@Ax@CpAA|HYhG[x@GtE_@hAKt@Kp@SLMx@Up@Sj@Or@M^I`@Ix@MZE^C`BMTCXEj@Gf@OVGVEx@Mj@If@ExAGBA`@At@E"
+                     },
+                     "start_location" : {
+                        "lat" : 48.1128727,
+                        "lng" : 11.5396813
+                     },
+                     "travel_mode" : "DRIVING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "0,1 km",
+                        "value" : 123
+                     },
+                     "duration" : {
+                        "text" : "1 Minute",
+                        "value" : 26
+                     },
+                     "end_location" : {
+                        "lat" : 48.09859489999999,
+                        "lng" : 11.5399827
+                     },
+                     "html_instructions" : "\u003cb\u003eRechts\u003c/b\u003e abbiegen auf \u003cb\u003eIrschenhauser Str.\u003c/b\u003e",
+                     "maneuver" : "turn-right",
+                     "polyline" : {
+                        "points" : "wgqdHefmeAPhI"
+                     },
+                     "start_location" : {
+                        "lat" : 48.0986785,
+                        "lng" : 11.5416298
+                     },
+                     "travel_mode" : "DRIVING"
+                  }
+               ],
+               "via_waypoint" : []
+            },
+            {
+               "distance" : {
+                  "text" : "1,2 km",
+                  "value" : 1249
+               },
+               "duration" : {
+                  "text" : "4 Minuten",
+                  "value" : 211
+               },
+               "end_address" : "Badstra√?e, 81379 M√ºnchen, Deutschland",
+               "end_location" : {
+                  "lat" : 48.1019425,
+                  "lng" : 11.5440059
+               },
+               "start_address" : "Kleinstra√?e, 81379 M√ºnchen, Deutschland",
+               "start_location" : {
+                  "lat" : 48.09859489999999,
+                  "lng" : 11.5399827
+               },
+               "steps" : [
+                  {
+                     "distance" : {
+                        "text" : "0,1 km",
+                        "value" : 123
+                     },
+                     "duration" : {
+                        "text" : "1 Minute",
+                        "value" : 19
+                     },
+                     "end_location" : {
+                        "lat" : 48.0986785,
+                        "lng" : 11.5416298
+                     },
+                     "html_instructions" : "Auf \u003cb\u003eIrschenhauser Str.\u003c/b\u003e nach \u003cb\u003eOsten\u003c/b\u003e Richtung \u003cb\u003eWolfratshauser Str.\u003c/b\u003e/\u003cb\u003eB11\u003c/b\u003e starten",
+                     "polyline" : {
+                        "points" : "egqdH{{leAQiI"
+                     },
+                     "start_location" : {
+                        "lat" : 48.09859489999999,
+                        "lng" : 11.5399827
+                     },
+                     "travel_mode" : "DRIVING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "0,3 km",
+                        "value" : 283
+                     },
+                     "duration" : {
+                        "text" : "1 Minute",
+                        "value" : 45
+                     },
+                     "end_location" : {
+                        "lat" : 48.1011952,
+                        "lng" : 11.5411483
+                     },
+                     "html_instructions" : "\u003cb\u003eLinks\u003c/b\u003e abbiegen auf \u003cb\u003eWolfratshauser Str.\u003c/b\u003e/\u003cb\u003eB11\u003c/b\u003e\u003cdiv style=\"font-size:0.9em\"\u003eWeiter auf B11\u003c/div\u003e",
+                     "maneuver" : "turn-left",
+                     "polyline" : {
+                        "points" : "wgqdHefmeAu@Da@@C@yAFg@Dk@Hy@LWDWFg@Nk@FYDUB"
+                     },
+                     "start_location" : {
+                        "lat" : 48.0986785,
+                        "lng" : 11.5416298
+                     },
+                     "travel_mode" : "DRIVING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "0,5 km",
+                        "value" : 478
+                     },
+                     "duration" : {
+                        "text" : "1 Minute",
+                        "value" : 46
+                     },
+                     "end_location" : {
+                        "lat" : 48.1049823,
+                        "lng" : 11.543429
+                     },
+                     "html_instructions" : "\u003cb\u003eRechts\u003c/b\u003e abbiegen auf \u003cb\u003eGreinerberg\u003c/b\u003e",
+                     "maneuver" : "turn-right",
+                     "polyline" : {
+                        "points" : "owqdHecmeAMYE@SAUBs@Ai@Aq@A[?o@Bi@?A?C?C?AASCA?AAOGA?AAKOSYMS]e@i@s@_AkA}@}@KKmAgAa@]GI"
+                     },
+                     "start_location" : {
+                        "lat" : 48.1011952,
+                        "lng" : 11.5411483
+                     },
+                     "travel_mode" : "DRIVING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "29 m",
+                        "value" : 29
+                     },
+                     "duration" : {
+                        "text" : "1 Minute",
+                        "value" : 6
+                     },
+                     "end_location" : {
+                        "lat" : 48.10496,
+                        "lng" : 11.543817
+                     },
+                     "html_instructions" : "\u003cb\u003eRechts\u003c/b\u003e abbiegen auf \u003cb\u003eEmil-Geis-Stra√?e\u003c/b\u003e",
+                     "maneuver" : "turn-right",
+                     "polyline" : {
+                        "points" : "cordHmqmeABmA"
+                     },
+                     "start_location" : {
+                        "lat" : 48.1049823,
+                        "lng" : 11.543429
+                     },
+                     "travel_mode" : "DRIVING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "0,3 km",
+                        "value" : 336
+                     },
+                     "duration" : {
+                        "text" : "2 Minuten",
+                        "value" : 95
+                     },
+                     "end_location" : {
+                        "lat" : 48.1019425,
+                        "lng" : 11.5440059
+                     },
+                     "html_instructions" : "Nach \u003cb\u003erechts\u003c/b\u003e abbiegen, um auf \u003cb\u003eEmil-Geis-Stra√?e\u003c/b\u003e zu bleiben",
+                     "maneuver" : "turn-right",
+                     "polyline" : {
+                        "points" : "_ordH{smeA\\CfCEpBE~CG`AAx@Cf@G"
+                     },
+                     "start_location" : {
+                        "lat" : 48.10496,
+                        "lng" : 11.543817
+                     },
+                     "travel_mode" : "DRIVING"
+                  }
+               ],
+               "via_waypoint" : []
+            }
+         ],
+         "overview_polyline" : {
+            "points" : "oi|dHi~oeA`EpJkA~As@|@wAdBuHfKwEnGaHpIKNMLwAlBqAzAe@r@a@x@wEnJwEzIuC|FgBdDeBzCe@l@q@z@qCxCq@n@_@^l@Bn@F|GJbFJxD@dAGNGfBFrIX\\@xHTnCDvEPp@@hGPjCLj@B@?tAFjHHxCJdL\\vBJr@HbBLz@PdA^|@h@v@p@xAtAjAp@hBf@`AJ|D\\vAJfDZfAJhDTfDLpACzAA~FWn@AvBHbFf@jJdAv@Nx@Vh@PbAp@h@j@p@~@p@nAvDjHhAnBbArBbDnHjIjRjBpDx@tAhGdJzBzB^VrDvBpFpClCfBlBlAtBfA|D~AfIdCdFxAdBNpBRx@?pAA~JAzAK|AOxAWhCm@dDsAz@a@\\W\\]PYf@qAf@wBR}BLuIB_FCeIC_TOaI]mGi@kI[mGEwBKkI@kSG}FOk@Ea@M}@Mq@Wq@W_@_@We@Im@Do@d@OT[t@MXQTg@hBe@pAWdAE\\?jAn@AzHQhAGz@ChBQnBEnK[bIc@~Gk@t@Kp@SLMx@Up@S~A]zBa@z@IvBQdAM~@WpASrAOtDQPhIQiIwAF}AHsANqAR_AVeALUBMYY?iA@{ACkABs@?YGQGMQiBgC_AkA}@}@yAsAi@g@BmA\\CxFK`FI`BK"
+         },
+         "summary" : "B2R",
+         "warnings" : [],
+         "waypoint_order" : [ 0 ]
+      }
+   ],
+   "status" : "OK"
+}
+
+0
+
+                  "maneuver" : "turn-right",
+                     "polyline" : {
+                        "points" : "_ordH{smeA\\CfCEpBE~CG`AAx@Cf@G"
+                     },
+                     "start_location" : {
+                        "lat" : 48.10496,
+                        "lng" : 11.543817
+                     },
+                     "travel_mode" : "DRIVING"
+                  }
+               ],
+               "via_waypoint" : []
+            }
+         ],
+         "overview_polyline" : {
+            "points" : "oi|dHi~oeA`EpJkA~As@|@wAdBuHfKwEnGaHpIKNMLwAlBqAzAe@r@a@x@wEnJwEzIuC|FgBdDeBzCe@l@q@z@qCxCq@n@_@^l@Bn@F|GJbFJxD@dAGNGfBFrIX\\@xHTnCDvEPp@@hGPjCLj@B@?tAFjHHxCJdL\\vBJr@HbBLz@PdA^|@h@v@p@xAtAjAp@hBf@`AJ|D\\vAJfDZfAJhDTfDLpACzAA~FWn@AvBHbFf@jJdAv@Nx@Vh@PbAp@h@j@p@~@p@nAvDjHhAnBbArBbDnHjIjRjBpDx@tAhGdJzBzB^VrDvBpFpClCfBlBlAtBfA|D~AfIdCdFxAdBNpBRx@?pAA~JAzAK|AOxAWhCm@dDsAz@a@\\W\\]PYf@qAf@wBR}BLuIB_FCeIC_TOaI]mGi@kI[mGEwBKkI@kSG}FOk@Ea@M}@Mq@Wq@W_@_@We@Im@Do@d@OT[t@MXQTg@hBe@pAWdAE\\?jAn@AzHQhAGz@ChBQnBEnK[bIc@~Gk@t@Kp@SLMx@Up@S~A]zBa@z@IvBQdAM~@WpASrAOtDQPhIQiIwAF}AHsANqAR_AVeALUBMYY?iA@{ACkABs@?YGQGMQiBgC_AkA}@}@yAsAi@g@BmA\\CxFK`FI`BK"
+         },
+         "summary" : "B2R",
+         "warnings" : [],
+         "waypoint_order" : [ 0 ]
+      }
+   ],
+   "status" : "OK"
+}
+
+0
+
+03c/b\u003e abbiegen, um auf \u003cb\u003eEmil-Geis-Stra√?e\u003c/b\u003e zu bleiben",
+   d v
